@@ -1,31 +1,69 @@
+
+# Dictionary with season and its advice
+season_advice = {
+    "summer": "Water your plants regularly and provide some shade.\n",
+    "winter": "Protect your plants from frost with covers.\n",
+    "spring": "Apply a light layer of mulch to help retain moisture,"
+    " keep the soil cool, and prevent weeds.\n",
+    "autumn": "Water in the mornings to allow plants to absorb"
+    " moisture before the heat of the day.\n",
+}
+
+# Dictionary with plant_type and its advice
+plant_type = {
+    "flower": "Use fertiliser to encourage blooms.",
+    "vegetable": "Keep an eye out for pests!",
+    "tree": "Consider planting trees and shrubs in September"
+    " for autumn blooms.",
+    "herbs": "Consider planting sprouted garlic bulbs"
+    "from the kitchen for their flavorful leaves.",
+}
+
+
+def get_advice(season, plant):
+    """
+    Determine which advice to give based on season and plant.
+
+    Args:
+        season: name of season.
+        plant: Type of plant to advise on.
+
+    Returns:
+        String: advice on season and plant.
+    """
+
+    # Variable to hold gardening advice
+    advice = ""
+
+    # Determine advice based on the season
+    if season in season_advice:
+        advice += f"\nAdvice for season: {season.title()} \n"
+        for info in season_advice[season]:
+            advice += f"{info}"
+    else:
+        advice += (
+            "\n That season is not available, try (Autumn, Summer,"
+            " Winter, Spring)"
+        )
+
+    # Determine advice based on the plant type
+    if plant in plant_type:
+        advice += f"\nAdvice for plant_type: {plant.title()} \n"
+        for info in plant_type[plant]:
+            advice += f"{info}"
+    else:
+        advice += (
+            "\n That season is not available, try (Tree, Flower,"
+            "Herbs, Vegetable)"
+        )
+
+    # Print the generated advice
+    return advice
+
+
 # Allow user to enter season and plant type
-season = input("Enter the season you're in: ").lower()
-plant_type = input("What plant type do you want advice on? ").lower()
+season = input("Enter the season you're in: ")
+plant = input("What plant type do you want advice on? ")
 
-# Variable to hold gardening advice
-advice = ""
-
-# Determine advice based on the season
-if season == "summer":
-    advice += "Water your plants regularly and provide some shade.\n"
-elif season == "winter":
-    advice += "Protect your plants from frost with covers.\n"
-else:
-    advice += "No advice for this season.\n"
-
-# Determine advice based on the plant type
-if plant_type == "flower":
-    advice += "Use fertiliser to encourage blooms."
-elif plant_type == "vegetable":
-    advice += "Keep an eye out for pests!"
-else:
-    advice += "No advice for this type of plant."
-
-# Print the generated advice
-print(advice)
-
-# TODO: Examples of possible features to add:
-# - Add detailed comments explaining each block of code.
-# - Refactor the code into functions for better readability and modularity.
-# - Store advice in a dictionary for multiple plants and seasons.
-# - Recommend plants based on the entered season.
+# Print the season advice with the plant type
+print(get_advice(season, plant))
